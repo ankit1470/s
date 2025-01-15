@@ -1,0 +1,538 @@
+/* You can add global styles to this file, and also import other style files */
+// jost font family add start
+@font-face {
+    font-family: 'JostBold';
+    src: url('./assets/fonts/jost/Jost-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JostBoldItalic';
+    src: url('./assets/fonts/jost/Jost-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'JostMediumItalic';
+    src: url('./assets/fonts/jost/Jost-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JostExtraBold';
+    src: url('./assets/fonts/jost/Jost-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JostMedium';
+    src: url('./assets/fonts/jost/Jost-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'JostRegular';
+    src: url('./assets/fonts/jost/Jost-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'JostSemiBold';
+    src: url('./assets/fonts/jost/Jost-SemiBold.ttf') format('truetype');
+}
+// jost font family add end
+// Create  For Dynamic Color only for ToolTip
+:root {
+    --tooltip-color: #000000; // or any global you wish to share with components
+}
+
+body .ui-widget{
+    font-family: 'Inter', sans-serif !important; 
+}
+
+.currentlySelected {
+    background-color: #d5f5e3;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.ucfirst {
+    text-transform: capitalize;
+}
+
+.min300 {
+    min-height: 300px;
+}
+
+.app-box {
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 230px;
+    background: rgb(240, 250, 149);
+    overflow: hidden;
+    box-shadow: 1px 1px 4px #ccc;
+}
+
+.app-box:hover {
+    box-shadow: 1px 1px 4px #999;
+}
+
+.app-box .remove {
+    position: absolute;
+    right: 21px;
+    top: 0px;
+    color: #545454;
+    display: none;
+}
+
+.app-box:hover .remove {
+    display: block;
+}
+
+.inline-btn {
+    background: #00b970;
+    padding: 1px 5px;
+    color: white;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.box {
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: auto;
+    box-shadow: 1px 1px 4px #ddd;
+}
+
+.form-group .form-control {
+    font-size: inherit;
+    background-color: inherit;
+}
+
+.dndDropArea {
+    padding: 10px;
+    /* border: dotted #ddd 2px; */
+}
+
+.dndDropArea.empty {
+    min-height: 200px;
+    border: dotted #ddd 2px;
+}
+
+.field {
+    padding: 5px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.field:hover {
+    box-shadow: 1px 1px 4px #ddd;
+}
+
+.toggle-Wrapper {
+    padding: 15px;
+    background: #d6d6d629;
+}
+
+.dndHandle {
+    cursor: pointer;
+    color: #999;
+}
+
+.dndDraggingSource {
+    opacity: 0.3;
+}
+
+.dndPlaceholder {
+    border-radius: 2px;
+    margin-bottom: 1px;
+    padding: 12px;
+    width: 100%;
+    border: 2px #87a3f6 dotted;
+}
+
+.bootPills_dndPlaceholder {
+    background: rgb(240, 250, 149);
+    border-radius: 2px;
+    width: 100%;
+    height: 50px;
+}
+
+.field .fa {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.red {
+    color: #d9534f;
+}
+
+.fa-trash {
+    color: #d9534f;
+}
+
+.marginT60 {
+    margin-top: 60px;
+}
+
+.color-red {
+    color: red;
+}
+
+.report-block {
+    padding: 10px;
+    background: #f8f8f8;
+    margin-bottom: 20px;
+}
+
+.report-block .row:nth-child(even) {
+    background: #fff;
+}
+
+.ftheme {
+    width: 100%;
+}
+
+.dndDropArea .field .fa {
+    opacity: 0;
+}
+
+.dndDropArea .field:hover .fa {
+    opacity: 1;
+}
+
+.colorpick {
+    height: 25px;
+    background: white;
+    border: none;
+}
+
+
+/*** Sag Tool Tip Class ***/
+
+// .sag_tooltip {
+//   text-align: center;
+//   padding: 0 50px;
+// }
+// .sag_tooltip [tooltipTitle] {
+//   display: inline-block;
+//   margin: 50px 20px;
+//   width: 180px;
+//   height: 50px;
+//   border: 1px solid gray;
+//   border-radius: 5px;
+//   line-height: 50px;
+//   text-align: center;
+// }
+.sag-tooltip {
+    position: absolute;
+    max-width: 230px;
+    font-size: 11px;
+    text-align: center;
+    color: #f8f8f2;
+    padding: 3px 8px;
+    background: var(--tooltip-color);
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0;
+    white-space: pre-line;
+}
+
+
+
+.sag-tooltip:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+}
+
+.sag-tooltip-top:after {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: var(--tooltip-color) transparent transparent transparent;
+}
+
+.sag-tooltip-bottom:after {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: transparent transparent var(--tooltip-color) transparent;
+}
+
+.sag-tooltip-left:after {
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent transparent transparent var(--tooltip-color);
+}
+
+.sag-tooltip-right:after {
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent var(--tooltip-color) transparent transparent;
+}
+
+.sag-tooltip-show {
+    opacity: 1;
+}
+
+.dbStateInvalid {
+    border: 1px solid #F5B7B1;
+}
+
+.dbStateValid {
+    border: 1px solid #ABEBC6;
+}
+
+.dbStateNone {
+    border: 1px solid transparent;
+}
+
+// Custom Loader  css
+#loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+    visibility: hidden;
+    background: #212121;
+    transition: 0.3s ease;
+    color: #fff;
+}
+
+.loader {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    --width: 34px;
+    --height: 34px;
+}
+
+.loader:before {
+    content: '';
+    width: var(--width);
+    height: var(--height);
+    border: 3px solid;
+    box-sizing: border-box;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: rotate .75s infinite linear;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+app-root:empty+#loader {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/*** resizable Sag Ctrl Click ***/
+
+.resizable {
+    position: absolute;
+    z-index: 9999;
+}
+
+.resizable>.resizers {
+    width: 100%;
+    height: 100%;
+    outline: 3px solid #4286f4;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.resizable>.resizers .resizer {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    /*magic to turn square into circle*/
+    background: white;
+    border: 3px solid #4286f4;
+    position: absolute;
+}
+
+.resizable>.resizers .resizer.top-left {
+    left: -5px;
+    top: -5px;
+    cursor: nwse-resize;
+    /*resizer cursor*/
+}
+
+.resizable>.resizers .resizer.top-right {
+    right: -5px;
+    top: -5px;
+    cursor: nesw-resize;
+}
+
+.resizable>.resizers .resizer.bottom-left {
+    left: -5px;
+    bottom: -5px;
+    cursor: nesw-resize;
+}
+
+.resizable>.resizers .resizer.bottom-right {
+    right: -5px;
+    bottom: -5px;
+    cursor: nwse-resize;
+}
+
+.sag_r_Click_Ctrl ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.sag_r_Click_Ctrl ul li {
+    list-style: none;
+    padding: 0 5px;
+    display: inline-block;
+    margin: 0 0px 0 4px;
+    background: #fff;
+    box-shadow: 0 1px 18px 0 rgb(0 0 0 / 8%), 0 6px 10px 0 rgb(0 0 0 / 10%), 0 3px 5px -1px rgb(0 0 0 / 15%), 0 0 4px 0 rgb(0 0 0 / 10%);
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50px;
+    font-size: 10px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.nodeSelected .sag_r_Click_Ctrl {
+    position: initial;
+    top: 0;
+    width: 98%;
+}
+
+.resizable .sag_r_Click_Ctrl {
+    width: 94%;
+    top: 0;
+    position: absolute;
+}
+
+.sag_r_Click_Ctrl ul .sag-ctrl-li {
+    width: 20px;
+    color: #000;
+}
+
+.sag_r_Click_Ctrl ul li {
+    color: #000;
+}
+
+.sag_r_Click_Ctrl ul .sag-ctrl-li:nth-child(2) {
+    margin-left: auto;
+}
+
+
+/*** resizable Sag Ctrl Click ***/
+
+
+/* node info Css **/
+
+.node-info {
+    display: none;
+}
+
+.node-info .badge {
+    border-radius: 20px;
+    padding: 3px 5px 3px 5px;
+    background: #87a3f6;
+    font-size: 8px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.dndDragover {
+    border: 1px dashed #5dce91 !important;
+}
+
+.dndDragover>.colmZone>.node-info,
+.dndDragover>.node-info {
+    display: block !important;
+    padding: 0px 2px 0px 2px;
+    color: #fff;
+    z-index: 9;
+}
+
+.nodeSelected .nodeArea {
+    border: 1px dashed #5dce91 !important;
+    padding: 5px 0 0 0 !important;
+}
+
+.nodeSelected {
+    border: 2px dashed #5dce91 !important;
+    padding-bottom: 2px !important;
+    background: rgba(93, 206, 145, .1) !important;
+    position: relative;
+}
+
+
+.customsdmttabs .tab-content .list-group-item {
+    display: none;
+}
+
+.customsdmttabs .tab-content .list-group-item.active {
+    display: block;
+}
+
+:root {
+    --progress-bar-width: 200px;
+    --progress-bar-height: 200px;
+    --font-size: 2rem;
+  }
+  
+
+  .circular-progress {
+    width: var(--progress-bar-width);
+    height: var(--progress-bar-height);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inner-circle {
+    position: absolute;
+    width: calc(var(--progress-bar-width) - 30px);
+    height: calc(var(--progress-bar-height) - 30px);
+    border-radius: 50%;
+    background-color: lightgrey;
+  }
+  
+  .percentage {
+    position: relative;
+    font-size: var(--font-size);
+    color: rgb(0, 0, 0, 0.8);
+  }
+  
+  @media screen and (max-width: 800px) {
+    :root {
+      --progress-bar-width: 150px;
+      --progress-bar-height: 150px;
+      --font-size: 1.3rem;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    :root {
+      --progress-bar-width: 120px;
+      --progress-bar-height: 120px;
+      --font-size: 1rem;
+    }
+  }
