@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>SagTranslate</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+<link rel="stylesheet" href="styles.css"></head>
+
+<body>
+
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    var selectedLang = 'en';
+    var urlparams=window.location.search.split("=")[1].split("-");
+    var userId = urlparams[0];
+    var projectId = urlparams[1];
+    var filePath = "";
+    var lang="English";
+    async function myfun() {
+      let response = await fetch('http://localhost:7777/lang/get-lang-obj-translate/'+userId+"/"+projectId);
+      if (response.ok) {
+        let json = await response.json();
+        selectedLang = json.langCode;
+        filePath = json.filePath;
+        lang = json.lang;
+        document.cookie = "googtrans=/en/" + selectedLang;
+        //--------
+        loadScript("//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit").then(
+          googleScript => { },
+          error => alert(`googleScript Error: ${error.message}`));
+      } else {
+        alert("HTTP-Error: " + response.status);
+      }
+    }
+    myfun();
+    //-----------
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: selectedLang, layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+    }
+    //-----------
+    function loadScript(src) {
+      return new Promise(function (resolve, reject) {
+        let script = document.createElement('script');
+        script.src = src;
+        script.onload = () => resolve(script);
+        script.onerror = () => reject(new Error(`Script load error for ${src}`));
+        document.head.append(script);
+      });
+    }
+
+  </script>
+  <app-root></app-root>
+<script src="runtime-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule defer></script><script src="polyfills-es5.js" nomodule defer></script><script src="polyfills-es2015.js" type="module"></script><script src="vendor-es2015.js" type="module"></script><script src="vendor-es5.js" nomodule defer></script><script src="main-es2015.js" type="module"></script><script src="main-es5.js" nomodule defer></script></body>
+
+</html>
